@@ -6,11 +6,28 @@ formContainer.addEventListener ('submit', function(event){
     event.preventDefault()
     console.log('form submit event')
     validateCarData()
-    numberOfDays()
+    validateNumberOfDays()
     validateCVV()
     validateTotalCost()
     validateCardNumber()
+    validateNameField ()
+    //validateExpiration()
     })
+
+// validate Name Field
+let regName = /^[a-zA-Z]+ [a-zA-Z]+$/
+let nameValue = document.querySelector('#name')
+let nameField = document.querySelector('#name-field')
+
+function validateNameField () {
+if (!regName.test(nameValue.value)) {
+    nameField.classList.add('input-invalid')
+    nameField.appendChild(newDiv).innerHTML = "Please enter your full name. "
+    return false;
+}else{
+    nameField.classList.add('input-valid')
+    return true;
+}}
 
 // validate car data
 let carField = document.querySelector('#car-field')
@@ -36,7 +53,7 @@ function validateCarData() {
 let daysField = document.querySelector('#days-field')
 let daysValue = document.querySelector('#days')
 
-function numberOfDays(){
+function validateNumberOfDays(){
 if (daysValue.value < 0 || daysValue.value > 30) {
     daysField.appendChild(newDiv).innerHTML = "Days must be between 1 and 30. "
     daysField.classList.add('input-invalid')
@@ -98,3 +115,13 @@ function validateCardNumber() {
     return (sum % 10) == 0;
   }
 
+  //validate expiration
+/*let expirationDate = document.querySelector('#expiration')
+
+  function validateExpiration(){
+if (isNaN(Date.parse(expirationDate.value))){
+    console.log('invalid date')
+} else {
+    console.log('validate')
+}
+  }*/
